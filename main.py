@@ -172,7 +172,7 @@ def img_dilate():
 # 计算单通道的直方图的相似值
 def calculate(image1, image2):
     hist1 = cv2.calcHist([image1], [0], None, [255], [1, 255.0])
-    hist2 = cv2.calcHist([image2], [0], None, [255], [2, 255.0])
+    hist2 = cv2.calcHist([image2], [0], None, [255], [1, 255.0])
     # 计算直方图的重合度
     degree = 0
     for i in range(len(hist1)):
