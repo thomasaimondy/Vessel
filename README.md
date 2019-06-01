@@ -3,6 +3,7 @@ Vessel Recognition and speed prediction.
 
 The main steps of this project are: firstly, the blood vessel is identified and extracted, the blood vessel part is white, the background part is black, and the image of the extracted blood vessel is equivalent to a mask, which performs an operation with the original video to retain the blood flow part, and the rest It is black. Then, the speed is predicted by comparing the gray fat map between adjacent frames.
 
+
 Original image
 
 Image of extracted blood vessels
@@ -10,6 +11,7 @@ Image of extracted blood vessels
 the image after "and"
 
 Speed recognition image
+
 
 
 Additional package need to be installed:
