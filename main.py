@@ -25,7 +25,7 @@ train=False
 #videoid = '20190215085036'  #20190215085036　20190215085145  20190306120208  20190306120335
 
 def train_func():
-		#########################################
+	#########################################
 	# Step 1: train the network
 	#########################################
 	config.set('experiment name', 'name', 'test') # the model saved
@@ -255,40 +255,15 @@ def extract_ordered_overlap(filename,full_imgs, patch_h, patch_w,stride_h,stride
     print(patches.shape)
     return patches  #array with all the full_imgs divided in patches
 
-#Recompone the full images with the patches
-def recompone(data,N_h,N_w):
-    assert (data.shape[1]==1 or data.shape[1]==3)  #check the channel is 1 or 3
-    assert(len(data.shape)==4)
-    N_pacth_per_img = N_w*N_h
-    assert(data.shape[0]%N_pacth_per_img == 0)
-    N_full_imgs = data.shape[0]/N_pacth_per_img
-    patch_h = data.shape[2]
-    patch_w = data.shape[3]
-    N_pacth_per_img = N_w*N_h
-    #define and start full recompone
-    full_recomp = np.empty((N_full_imgs,data.shape[1],N_h*patch_h,N_w*patch_w))
-    k = 0  #iter full img
-    s = 0  #iter single patch
-    while (s<data.shape[0]):
-        #recompone one:
-        single_recon = np.empty((data.shape[1],N_h*patch_h,N_w*patch_w))
-        for h in range(N_h):
-            for w in range(N_w):
-                single_recon[:,h*patch_h:(h*patch_h)+patch_h,w*patch_w:(w*patch_w)+patch_w]=data[s]
-                s+=1
-        full_recomp[k]=single_recon
-        k+=1
-    assert (k==N_full_imgs)
-    return full_recomp
-
 def velocity_predict():
     path_data_result = config.get('recognition settings', 'path_result_hdf')
     filesnumber = len(os.listdir(path_data_result+videoid))
     print("filesnumber:"+str(filesnumber))
     v=np.zeros((500,25))
-    for i in range(filesnumber-1):
-        filename1 = path_data_result+videoid+'/'+str(i+1)+'.tif'
-        filename2 = path_data_result+videoid+'/'+str(i+2)+'.tif'
+    #for i in range(filesnumber-1):
+    for i in range(0,filesnumber-3,2):
+        filename1 = path_data_result+videoid+'/'+str(i+2)+'.tif'
+        filename2 = path_data_result+videoid+'/'+str(i+4)+'.tif'
         test_imgs_original1 = cv2.imread(filename1,0)
         test_imgs_original2 = cv2.imread(filename2,0)
 
@@ -296,13 +271,13 @@ def velocity_predict():
         # patches2 = np.empty(((100,58,56,3)))
         # patches1 = np.array(patches1) 
         # patches2 = np.array(patches2) 
-        if not os.path.exists("/media/zhangyue/80253940-da51-443b-af59-03e8ba01ec83/zhangyue/thomascodes/Vessel(code)/Vessel(data)/split/"+videoid+"/"+str(i+1)):
-            get_data_testing_overlap(str(i+1),test_imgs_original1)
-        get_data_testing_overlap(str(i+2),test_imgs_original2)
+        if not os.path.exists("/media/zhangyue/80253940-da51-443b-af59-03e8ba01ec83/zhangyue/thomascodes/Vessel(code)/Vessel(data)/split/"+videoid+"/"+str(i+2)):
+            get_data_testing_overlap(str(i+2),test_imgs_original1)
+        get_data_testing_overlap(str(i+4),test_imgs_original2)
 
         for j in range(24):
-            filename_1= "/media/zhangyue/80253940-da51-443b-af59-03e8ba01ec83/zhangyue/thomascodes/Vessel(code)/Vessel(data)/split/"+videoid+"/"+str(i+1)+"/"+str(j+1)+".tif"
-            filename_2= "/media/zhangyue/80253940-da51-443b-af59-03e8ba01ec83/zhangyue/thomascodes/Vessel(code)/Vessel(data)/split/"+videoid+"/"+str(i+2)+"/"+str(j+2)+".tif"
+            filename_1= "/media/zhangyue/80253940-da51-443b-af59-03e8ba01ec83/zhangyue/thomascodes/Vessel(code)/Vessel(data)/split/"+videoid+"/"+str(i+2)+"/"+str(j+1)+".tif"
+            filename_2= "/media/zhangyue/80253940-da51-443b-af59-03e8ba01ec83/zhangyue/thomascodes/Vessel(code)/Vessel(data)/split/"+videoid+"/"+str(i+4)+"/"+str(j+2)+".tif"
             gray1 = cv2.imread(filename_1,0)
             gray2 = cv2.imread(filename_2,0)
             n= classify_hist_with_split(gray1, gray2)
@@ -324,11 +299,11 @@ def velocity_predict():
                 y=5
             x_2 = x*97 ; y_2 = y*93
 
-            im = cv2.imread("/media/zhangyue/80253940-da51-443b-af59-03e8ba01ec83/zhangyue/thomascodes/Vessel(code)/Vessel(data)/finish/"+videoid+"/"+str(i+1)+".tif",0)
+            im = cv2.imread("/media/zhangyue/80253940-da51-443b-af59-03e8ba01ec83/zhangyue/thomascodes/Vessel(code)/Vessel(data)/finish/"+videoid+"/"+str(i+2)+".tif",0)
             image = drawRectBox(im,int(x_2),int(y_2),int(v[i][j]))
-            print("第"+str(i+1)+"张照片"+"第"+str(j+1)+"块的直方图算法差异度(速度）：",v[i][j])
-            cv2.imwrite("/media/zhangyue/80253940-da51-443b-af59-03e8ba01ec83/zhangyue/thomascodes/Vessel(code)/Vessel(data)/finish/"+videoid+"/"+str(i+1)+".tif",image)
-        print("第"+str(i+1)+"张照片对比完毕") 
+            print("第"+str(i+2)+"张照片"+"第"+str(j+1)+"块的直方图算法差异度(速度）：",v[i][j])
+            cv2.imwrite("/media/zhangyue/80253940-da51-443b-af59-03e8ba01ec83/zhangyue/thomascodes/Vessel(code)/Vessel(data)/finish/"+videoid+"/"+str(i+2)+".tif",image)
+        print("第"+str(i+2)+"张照片对比完毕") 
         print(v[i])
 
         #os.mkdir("/media/zhangyue/80253940-da51-443b-af59-03e8ba01ec83/zhangyue/thomascodes/Vessel(code)/Vessel(data)/finish/"+videoid)
