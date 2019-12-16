@@ -1,0 +1,25 @@
+[data paths]
+path_local = /home/zhangyue/codes/thomascodes/Data/DRIVE_datasets_training_testing/
+test_imgs_original = DRIVE_dataset_imgs_test.hdf5
+test_groundtruth = DRIVE_dataset_groundTruth_test.hdf5
+test_border_masks = DRIVE_dataset_borderMasks_test.hdf5
+
+[experiment name]
+name = test
+
+[experiment dir]
+dir = /home/zhangyue/codes/thomascodes/Data/Vessel/
+
+[data attributes]
+patch_height = 48
+patch_width = 48
+
+[testing settings]
+best_last = best
+full_images_to_test = 20
+n_group_visual = 1
+average_mode = True
+stride_height = 5
+stride_width = 5
+nohup = True
+

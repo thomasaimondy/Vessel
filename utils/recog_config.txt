@@ -1,0 +1,50 @@
+[data paths]
+path_local = /home/zhangyue/codes/thomascodes/Data/DRIVE_datasets_training_testing/
+train_imgs_original = DRIVE_dataset_imgs_train.hdf5
+train_groundtruth = DRIVE_dataset_groundTruth_train.hdf5
+train_border_masks = DRIVE_dataset_borderMasks_train.hdf5
+
+[experiment name]
+name = test
+
+[experiment dir]
+dir = /home/zhangyue/codes/thomascodes/Data/Vessel/
+
+[data attributes]
+patch_height = 48
+patch_width = 48
+
+[testing settings]
+best_last = best
+full_images_to_test = 20
+n_group_visual = 1
+average_mode = True
+stride_height = 5
+stride_width = 5
+nohup = True
+
+[recognition settings]
+dir = /home/zhangyue/codes/thomascodes/Data/Vessel/
+name = train
+nohup = True
+path_video = ../Data/Vessel/videos/20190215085036.avi
+path_local_oriimgs = ../Data/Vessel/20190215085036/images/
+path_local_orimasks = ../Data/Vessel/20190215085036/masks/
+path_local_hdf = ../Data/Vessel/datasets_recognition/
+path_standardmask = /home/zhangyue/codes/thomascodes/Data/Vessel/standardmask.tif
+imgs_original = dataset_imgs_test.hdf5
+groundtruth = dataset_groundTruth_test.hdf5
+border_masks = dataset_borderMasks_test.hdf5
+recognized_imgs = recognized_imgs
+imgs_to_test_from = 280
+imgs_to_test_to = 300
+image_channel = 3
+image_height = 584
+image_width = 565
+image_type = tif
+n_group_visual = 1
+average_mode = True
+stride_height = 5
+stride_width = 5
+video_name = 20190215085036
+
