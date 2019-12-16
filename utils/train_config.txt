@@ -1,5 +1,5 @@
 [data paths]
-path_local = /home/zhangyue/codes/thomascodes/Data/DRIVE_datasets_training_testing/
+path_local = /home/zhangyue/codes/thomascodes/Data/DRIVE_datasets_training_testing(4replace)/
 train_imgs_original = DRIVE_dataset_imgs_train.hdf5
 train_groundtruth = DRIVE_dataset_groundTruth_train.hdf5
 train_border_masks = DRIVE_dataset_borderMasks_train.hdf5
