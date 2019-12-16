@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # -*- coding: utf-8 -*
 import os
 os.environ['KMP_DUPLICATE_LIB_OK']='TRUE'
@@ -367,4 +368,3 @@ for i in range(4):
 		#get_data_testing_overlap()
 		# velocity_predict()
 		# imgs_video_func()
-        #video_stable_func()

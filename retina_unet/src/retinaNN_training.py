@@ -119,10 +119,10 @@ def get_gnet(n_ch,patch_height,patch_width):
 
 def training_unet(model,data_train, data_label,epochs, batch_size, name_dir, name_experiment):
     model.compile(optimizer='sgd', loss='categorical_crossentropy',metrics=['accuracy'])
-    checkpointer = ModelCheckpoint(filepath=name_dir+name_experiment+'/'+name_experiment +'_best_weights.h5', verbose=1, save_weights_only=True , monitor='val_loss', mode='auto', save_best_only=True , period = 1)
+    checkpointer = ModelCheckpoint(filepath=name_dir+"train_4exchange"+'/'+name_experiment +'_best_weights.h5', verbose=1, save_weights_only=True , monitor='val_loss', mode='auto', save_best_only=True , period = 1)
     model.fit(data_train, data_label, epochs=epochs, batch_size=batch_size, verbose=2, shuffle=True, validation_split=0.1, callbacks=[TensorBoard(log_dir='mytensorboard'),checkpointer])
 def training_gnet(model,data_train, data_label,epochs, batch_size, name_dir, name_experiment):
     model.compile(optimizer='sgd', loss='categorical_crossentropy',metrics=['accuracy'])
-    checkpointer = ModelCheckpoint(filepath=name_dir+name_experiment+'/'+name_experiment +'_best_weights.h5', verbose=1, save_weights_only=True , monitor='val_loss', mode='auto', save_best_only=True , period = 1)
+    checkpointer = ModelCheckpoint(filepath=name_dir+"train_4exchange"+'/'+name_experiment +'_best_weights.h5', verbose=1, save_weights_only=True , monitor='val_loss', mode='auto', save_best_only=True , period = 1)
     model.fit(data_train, data_label, epochs=epochs, batch_size=batch_size, verbose=2, shuffle=True, validation_split=0.1, callbacks=[TensorBoard(log_dir='mytensorboard'),checkpointer])
 

@@ -29,9 +29,9 @@ config.read('../utils/configuration.txt')
 # #train
 data_root = config.get('training settings', 'raw_data_root_path')
 
-original_imgs_train = data_root + "DRIVE/training_tif/images/"
-groundTruth_imgs_train = data_root + "DRIVE/training_tif/1st_manual/"
-borderMasks_imgs_train = data_root + "DRIVE/training_tif/mask/"
+original_imgs_train = data_root + "DRIVE/training_tif(4replace)/images/"
+groundTruth_imgs_train = data_root + "DRIVE/training_tif(4replace)/1st_manual/"
+borderMasks_imgs_train = data_root + "DRIVE/training_tif(4replace)/mask/"
 #test
 original_imgs_test = data_root + "DRIVE/test_tif/images/"
 groundTruth_imgs_test = data_root + "DRIVE/test_tif/1st_manual/"
@@ -52,7 +52,7 @@ borderMasks_imgs_test = data_root + "DRIVE/test_tif/mask/"
 channels = 3
 height = 584
 width = 565
-dataset_path = data_root + "DRIVE_datasets_training_testing/"
+dataset_path = data_root + "DRIVE_datasets_training_testing(4replace)/"
 imgtype = "tif"
 
 def checkrgb(inarray):
