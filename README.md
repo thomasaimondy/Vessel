@@ -13,7 +13,6 @@ python prepare_datasets_DRIVE.py # for prepare the training dataset, change the 
 python main.py # with the setting of ‘train=True’ in it.
 ```
 
-
 Test procedure:
 ```
 python main.py # with the settting of 'train=False' in it.
